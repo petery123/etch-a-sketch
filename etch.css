@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+}
+
+.box{
+    outline: red solid 1px;
+    height: 40px;
+    width: 40px;
+}
