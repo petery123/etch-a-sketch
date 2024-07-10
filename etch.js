@@ -8,6 +8,8 @@ const CONTAINER_LENGTH = 700;
 let size = 16;
 let boxLength = CONTAINER_LENGTH / size;
 
+let color = getRandomColor();
+
 container.addEventListener('mouseover', handleMouseOver);
 setSizeBtn.addEventListener('click', handleBtnClick);
 
@@ -28,7 +30,9 @@ function handleMouseOver(event){
     if (event.target.className === "container") {
         return
     }
-    event.target.classList.add("changeBC");
+
+    event.target.style.backgroundColor = color;
+    color = getRandomColor();
 }
 
 function handleBtnClick(){
@@ -49,6 +53,12 @@ function clearContainerLine(){
     container.querySelectorAll(".column").forEach(element => element.remove());
     column.querySelectorAll(".box").forEach(element => element.remove());
     boxLength = CONTAINER_LENGTH / size;
+}
+
+function getRandomColor() {
+    const randomNum = Math.floor(Math.random() * 16777215);
+    const hexString = randomNum.toString(16).padStart(6, '0');
+    return `#${hexString}`;
 }
 
 setGrid();
