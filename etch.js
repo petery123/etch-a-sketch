@@ -3,7 +3,7 @@ const line = document.createElement("div");
 line.classList.add("line")
 
 const SIDES = 700;
-let size = 100;
+let size = 16;
 let boxSide = SIDES / size;
 
 for (i = 0; i < size; i++){
@@ -20,5 +20,8 @@ for (i = 0; i < size; i++){
 container.addEventListener('mouseover', handleMouseOver);
 
 function handleMouseOver(event){
+    if (event.target.className === "container") {
+        return
+    }
     event.target.classList.add("changeBC");
 }
