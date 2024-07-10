@@ -13,25 +13,18 @@ let color = getRandomColor();
 container.addEventListener('mouseover', handleMouseOver);
 setSizeBtn.addEventListener('click', handleBtnClick);
 
-function setGrid(){
-    for (i = 0; i < size; i++){
-        const box = document.createElement("div");
-        box.classList.add("box");
-        box.setAttribute("style", `width: ${boxLength}px; height: ${boxLength}px`)
-        column.appendChild(box);
-    }
-    
-    for (i = 0; i < size; i++){
-        container.appendChild(column.cloneNode(true));
-    }
-}
-
 function handleMouseOver(event){
     if (event.target.className === "container") {
         return
     }
+    if (event.target.classList.contains("changed")){
+        let oldOpacity = +event.target.style.opacity;
+        event.target.style.opacity = oldOpacity !== 1? oldOpacity+0.1 : 1;
+        return;
+    }
 
-    event.target.style.backgroundColor = color;
+    event.target.style.cssText+=`background-color: ${color}; opacity: 0.1`;
+    event.target.classList.add("changed");
     color = getRandomColor();
 }
 
@@ -47,6 +40,19 @@ function handleBtnClick(){
     size = entry;
     clearContainerLine();
     setGrid();
+}
+
+function setGrid(){
+    for (i = 0; i < size; i++){
+        const box = document.createElement("div");
+        box.classList.add("box");
+        box.setAttribute("style", `width: ${boxLength}px; height: ${boxLength}px`)
+        column.appendChild(box);
+    }
+    
+    for (i = 0; i < size; i++){
+        container.appendChild(column.cloneNode(true));
+    }
 }
 
 function clearContainerLine(){

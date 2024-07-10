@@ -11,6 +11,11 @@
     border: 3px solid black;
 }
 
-.box{
-    outline: red solid 1px;
+#setSizeBtn{
+    height: 40px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    border-radius: 5px;
+    border-style: none;
 }
